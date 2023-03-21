@@ -1,0 +1,396 @@
+	"parameterName":"dvrEngine1DynamicVideoBaseURL","parameterType":"stringType","parameterValue":"http://%IP%:%PORT%/VxOASimulator/vxoa"	
+	
+	dvrEngineVxoa1VideoBaseURL	"parameterName":"dvrEngineVxoa1VideoBaseURL","parameterType":"stringType","parameterValue":"http://11.33.11.33:8080"
+	
+	dvrEngineVxOABaseURL1	"parameterName":"dvrEngineVxoaBaseURL","parameterType":"stringType","parameterValue":"http://%IP%:%PORT%/VxOASimulator/vxoa"
+	
+	"parameterName":"=dvrEngine2VideoBaseURL","parameterType":"stringType","parameterValue":"http://%IP%:%PORT%/VxOASimulator/vxoa"		
+	
+	
+	
+	
+	curl -H "opco:222" -H "Content-Type:application/json" http://192.168.10.37:31380/user/data/User?schema=1.0&byId=account-id | python -m json.tool
+	curl -H "opco:222" -H "Content-Type:application/json" http://192.168.10.37:31380/epg/data/Event?schema=1.0&byId=channel-id | python -m json.tool
+	
+	
+	
+	{"locator":"http://192.168.10.37:7070/http-proxy/NPVR/channel-id/sfmt=shls/index.m3u8?start=2023-01-31T06:15:34Z&end=2023-01-31T06:16:34Z"}
+	
+	{"locator":"${channelUrl}/start_time=${program-start-time-1min-ISO}&end_time=${program-end-time-1min-ISO}"}
+	
+	
+	
+	
+	
+
+
+curl --location --request POST 'http://localhost:7070/http-proxy/Mock/stub' \
+--header 'Authorization: Basic dXNlcjpwYXNzd29yZA==' \
+--header 'Content-Type: text/html' \
+--data '{  "when":{    "method":"POST",    "path":"/CdnKey/syncCDNDataNotify",    "headers":{      "actionType":"^ADD$",      "authenticatorSource":"^vrm,[^,]+,[^,]+$",      "dataType":"^90$",      "sessionID":"^[\\w-]{36}$",      "timestamp":"^\\d{14}$"    },    "xml":{      "expressions":[         "/addRecording/assetId[text()=\"74\"]",         "/addRecording/channelId[text()=\"channel-id\"]"      ]    }  },  "then":[    {       "statusCode": 200,       "body":[          "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",          "<addRecordingRsp xmlns=\"http://api.cdn.huawei.com\">",          "  <result>",          "    <resultCode>0</resultCode>",          "    <resultMsg>Success</resultMsg>",          "  </result>",          "</addRecordingRsp>"       ]       }  ]}'
+
+
+
+
+POST http://192.168.10.37:7070/http-proxy/Mock/stub
+
+POST data:
+{
+  "when":{
+    "method":"POST",
+    "path":"/CdnKey/syncCDNDataNotify",
+    "headers":{
+      "actionType":"^ADD$",
+      "authenticatorSource":"^vrm,[^,]+,[^,]+$",
+      "dataType":"^90$",
+      "sessionID":"^[\\w-]{36}$",
+      "SpId":"^008$",
+      "timestamp":"^\\d{14}$"
+    },
+    "xml":{
+      "expressions":[
+         "/addRecording/assetId[text()='53']",
+         "/addRecording/channelId[text()='channel-id']",
+         "/addRecording/startTime[text()='1675679439764']",
+         "/addRecording/endTime[text()='1675679499764']"
+      ]
+    }
+  },
+  "then":[
+    {
+       "statusCode": 200,
+       "body":[
+          "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+          "<addRecordingRsp xmlns=\"http://api.cdn.huawei.com\">",
+          "  <result>",
+          "    <resultCode>0</resultCode>",
+          "    <resultMsg>Success</resultMsg>",
+          "  </result>",
+          "</addRecordingRsp>"
+       ]   
+    }
+  ]
+}
+
+
+
+http://192.168.10.37:7070/http-proxy/history
+
+
+
+
+
+
+{
+  "when":{
+    "method":"POST",
+    "path":"/CdnKey/syncCDNDataNotify",
+    "headers":{
+      "actionType":"^ADD$",
+      "authenticatorSource":"^vrm,[^,]+,[^,]+$",
+      "dataType":"^90$",
+      "sessionID":"^[\\\\w-]{36}$",
+      "SpId":"^${sp-id}$",
+      "timestamp":"^\\\\d{14}$"
+    },
+    "xml":{
+      "expressions":[
+         "/addRecording/assetId[text()='${asset-id}']",
+         "/addRecording/channelId[text()='${test-channel-id}']",
+         "/addRecording/startTime[text()='${program-start-time-90sec}']",
+         "/addRecording/endTime[text()='${program-end-time-90sec}']"
+      ]
+    }
+  },
+  "then":[
+    {
+       "statusCode": 200,
+       "body":[
+          "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+          "<addRecordingRsp xmlns=\"http://api.cdn.huawei.com\">",
+          "  <result>",
+          "    <resultCode>0</resultCode>",
+          "    <resultMsg>Success</resultMsg>",
+          "  </result>",
+          "</addRecordingRsp>"
+       ]   
+    }
+  ]
+}
+
+
+{
+    "entries": [
+        {
+            "instanceName": "${dvr-engine-id}",
+            "isInternal": false,
+            "parameterName": "dvrEngineType",
+            "parameterType": "stringType",
+            "parameterValue": "mixedengine",
+            "serviceName": "any"
+        },
+        {
+            "instanceName": "${dvr-engine-id}",
+            "isInternal": false,
+            "parameterName": "activeDvrEngine",
+            "parameterType": "stringType",
+            "parameterValue": "true",
+            "serviceName": "any"
+        },
+        {
+            "instanceName": "${dvr-engine-id}",
+            "isInternal": false,
+            "parameterName": "mixedJobEngineList",
+            "parameterType": "stringType",
+            "parameterValue": "vfc,vspp",
+            "serviceName": "any"
+        },
+        {
+            "instanceName": "${dvr-engine-id}",
+            "isInternal": false,
+            "parameterName": "dvrEngine1VideoBaseURL",
+            "parameterType": "stringType",
+            "parameterValue": "http://${ip_http-proxy}:${port_http-proxy}/http-proxy",
+            "serviceName": "any"
+        },
+        {
+			"instanceName": "${dvr-engine-id}",
+            "isInternal": false,
+            "parameterName": "dvrEngine2VideoBaseURL",
+            "parameterType": "stringType",
+            "parameterValue": "${dvr-engine-fabrix-base-url}",
+            "serviceName": "any"
+        },
+        {
+            "instanceName": "${dvr-engine-id}",
+            "isInternal": false,
+            "parameterName": "dvrEngine1DynamicVideoBaseURL",
+            "parameterType": "stringType",
+            "parameterValue": "${video-base-url}",
+            "serviceName": "any"
+        },
+        {
+          "instanceName": "${dvr-engine-id}",
+          "isInternal": false,
+          "parameterName": "dvrEngine2DynamicVideoBaseURL",
+          "parameterType": "stringType",
+          "parameterValue": "${dvr-engine-fabrix-video-base-url}",
+          "serviceName": "any"  
+			
+        },
+        {
+            "instanceName": "${dvr-engine-id}",
+            "isInternal": false,
+            "parameterName": "dvrEngineMixedEngine1BaseURL",
+            "parameterType": "stringType",
+            "parameterValue": "http://${ip_http-proxy}:${port_http-proxy}/http-proxy",
+            "serviceName": "any"
+        },
+        {
+            "instanceName": "${dvr-engine-id}",
+            "isInternal": false,
+            "parameterName": "dvrEngineMixedEngine1Username",
+            "parameterType": "stringType",
+            "parameterValue": "dvrEngineMixedEngine1Username=${user}",
+            "serviceName": "any"
+        },
+        {
+            "instanceName": "${dvr-engine-id}",
+            "isInternal": false,
+            "parameterName": "dvrEngineMixedEngine1Password",
+            "parameterType": "stringType",
+            "parameterValue": "dvrEngineMixedEngine1Password=${jQk+8zqzubRTzj7xX0dFdw==}",
+            "serviceName": "any"
+        },
+        {
+            "instanceName": "${dvr-engine-id}",
+            "isInternal": false,
+            "parameterName": "dvrEngineMixedEngine1ClientId",
+            "parameterType": "stringType",
+            "parameterValue": "dvrEngineMixedEngine1ClientId=${007}",
+            "serviceName": "any"
+        },
+        {
+			"instanceName": "${dvr-engine-id}",
+            "isInternal": false,
+            "parameterName": "dvrEngineMixedEngine2BaseURL",
+            "parameterType": "stringType",
+            "parameterValue": "${dvr-engine-fabrix-base-url}",
+            "serviceName": "any"
+        },
+		{
+            "instanceName": "${dvr-engine-id}",
+            "isInternal": false,
+            "parameterName": "dvrEngineMixedEngine2Username",
+            "parameterType": "stringType",
+            "parameterValue": "${dvrEngineMixedEngine1Username}",
+            "serviceName": "any"
+        },
+        {
+            "instanceName": "${dvr-engine-id}",
+            "isInternal": false,
+            "parameterName": "dvrEngineMixedEngine2Password",
+            "parameterType": "stringType",
+            "parameterValue": "${dvrEngineMixedEngine1Password}",
+            "serviceName": "any"
+        },
+        {
+            "instanceName": "${dvr-engine-id}",
+            "isInternal": false,
+            "parameterName": "dvrEngineMixedEngine2ClientId",
+            "parameterType": "stringType",
+            "parameterValue": "${dvrEngineMixedEngine1ClientId}",
+            "serviceName": "any"
+        },
+        {
+            "instanceName": "${dvr-engine-id}",
+            "isInternal": false,
+            "parameterName": "dvrEngineFabrixHomeId",
+            "parameterType": "stringType",
+            "parameterValue": "${dvr-engine-fabrix-home-id}",
+            "serviceName": "any"
+        },
+		{
+            "instanceName": "${dvr-engine-id}",
+            "isInternal": false,
+            "parameterName": "notificationInterval",
+            "parameterType": "integerType",
+            "parameterValue": "0",
+            "serviceName": "any"
+        },
+        {
+            "instanceName": "${dvr-engine-id}",
+			"isInternal": false,
+            "parameterName": "enginePurgeEnabled",
+            "parameterType": "booleanType",
+            "parameterValue": "false",
+            "serviceName": "any"
+        },
+		{ 
+			"serviceName" : "any", 
+			"instanceName" : "${dvr-engine-id}", 
+			"parameterName":"assetCreationDelay",
+			"parameterType":"durationType",
+			"parameterValue":"PT1M",
+			"isInternal" : false 
+		},
+        {
+            
+            "instanceName": "${dvr-engine-id}",
+            "isInternal": true,
+            "parameterName": "dvrEngineVfcSharedSecret",
+            "parameterType": "stringType",
+            "parameterValue": "jQk+8zqzubRTzj7xX0dFdw==",
+            "serviceName": "any"
+            
+        },
+		{
+            
+            "instanceName": "${dvr-engine-id}",
+            "isInternal": true,
+            "parameterName": "dvrEngineVfcSpId",
+            "parameterType": "stringType",
+            "parameterValue": "${sp-id}",
+            "serviceName": "any"
+            
+        },
+		{
+            
+            "instanceName": "${dvr-engine-id}",
+            "isInternal": false,
+            "parameterName": "maxRetryAttempts",
+            "parameterType": "integerType",
+            "parameterValue": "3",
+            "serviceName": "cdvrBs"
+            
+        },
+		{
+            
+            "instanceName": "${dvr-engine-id}",
+            "isInternal": false,
+            "parameterName": "maxRetryDuration",
+            "parameterType": "durationType",
+            "parameterValue": "PT4H",
+            "serviceName": "cdvrBs"
+            
+        },
+		{
+            
+            "instanceName": "${dvr-engine-id}",
+            "isInternal": false,
+            "parameterName": "retryAssetizationEnabled",
+            "parameterType": "booleanType",
+            "parameterValue": "false",
+            "serviceName": "any"
+            
+        },
+		{
+            
+            "instanceName": "${dvr-engine-id}",
+            "isInternal": false,
+            "parameterName": "retryMode",
+            "parameterType": "stringType",
+            "parameterValue": "attempts",
+            "serviceName": "cdvrBs"
+            
+        }
+		
+		
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  "when":{
+    "method":"POST",
+    "path":"/CdnKey/syncCDNDataNotify",
+    "headers":{
+      "actionType":"^ADD$",
+      "authenticatorSource":"^vrm,[^,]+,[^,]+$",
+      "dataType":"^90$",
+      "sessionID":"^[\\\\w-]{36}$",
+      "SpId":"^${sp-id}$",
+      "timestamp":"^\\\\d{14}$"
+    },
+    "xml":{
+      "expressions":[
+         "/addRecording/assetId[text()='${asset-id}']",
+         "/addRecording/channelId[text()='${test-channel-id}']",
+         "/addRecording/startTime[text()='${start-time}']",
+         "/addRecording/endTime[text()='${end-time}']"
+      ]
+    }
+  },
+  "then":[
+    {
+       "statusCode": 200,
+       "body":[
+          "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+          "<addRecordingRsp xmlns=\"http://api.cdn.huawei.com\">",
+          "  <result>",
+          "    <resultCode>0</resultCode>",
+          "    <resultMsg>Success</resultMsg>",
+          "  </result>",
+          "</addRecordingRsp>"
+       ]   
+    }
+  ]
+}
+
+
+
+
+
+
+
+
