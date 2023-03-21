@@ -1,0 +1,26 @@
++------------+------+--------------+-------------+----------+---------------------------------+-----------------------------------------------------------+---------------+---------+
+| internalId | id   | instanceName | serviceName | internal | parameterName                   | parameterValue                                            | parameterType | version |
++------------+------+--------------+-------------+----------+---------------------------------+-----------------------------------------------------------+---------------+---------+
+|          2 | NULL | any          | cdvrBs      |        0 | assetNotificationBaseUrl        | http://changeHost:changePort                              | stringType    |       0 |
+|         19 | NULL | any          | cdvrBs      |        0 | epgNotificationBaseUrl          | http://changeHost:changePort                              | stringType    |       0 |
+|         28 | NULL | any          | authBs      |        0 | middlewareAuthenticationBaseURL | http://localhost:9090/Middleware/authenticateUser         | stringType    |       0 |
+|         30 | NULL | any          | any         |        0 | middlewareAuthorizationBaseURL  | http://localhost:9090/Middleware/authorizeContent         | stringType    |       0 |
+|         36 | NULL | any          | cdvrBs      |        0 | recordingNotificationBaseUrl    | http://changeHost:changePort                              | stringType    |       0 |
+|         57 | NULL | any          | any         |        0 | authenticationBsBaseUrl         | http://authentication-bs.cvrm.svc.cluster.local:8085/auth | stringType    |       0 |
+|         58 | NULL | any          | any         |        0 | cdvrBsBaseUrl                   | http://cdvr-bs-222.cvrm.svc.cluster.local:8086/cDVRBs     | stringType    |       0 |
+|         59 | NULL | any          | any         |        0 | cdvrDsBaseUrl                   | http://cdvr-ds.cvrm.svc.cluster.local:8081/cDVR           | stringType    |       0 |
+|         60 | NULL | any          | any         |        0 | epgBsBaseUrl                    | http://epg-bs.cvrm.svc.cluster.local:8089/epgBs           | stringType    |       0 |
+|         61 | NULL | any          | any         |        0 | epgDsBaseUrl                    | http://epg-ds.cvrm.svc.cluster.local:8082/epg             | stringType    |       0 |
+|         62 | NULL | any          | any         |        0 | importBsBaseUrl                 | http://import-bs-222.cvrm.svc.cluster.local:8090/import   | stringType    |       0 |
+|         63 | NULL | any          | any         |        0 | schedulerBsBaseUrl              | http://scheduler-bs.cvrm.svc.cluster.local:8093/scheduler | stringType    |       0 |
+|         91 | NULL | any          | any         |        0 | usageDataDsBaseUrl              | http://usage-data-ds.cvrm.svc.cluster.local:8100/usage    | stringType    |       0 |
+|         92 | NULL | any          | any         |        0 | usageDataNotificationsBaseUrl   | http://localhost:9090                                     | stringType    |       0 |
+|        102 | NULL | any          | cdvrBs      |        0 | contentRegistrationBaseUrl      | http://changeHost:changePort                              | stringType    |       0 |
+|        113 | NULL | mixedengine1 | any         |        0 | dvrEngine1VideoBaseURL          | http://192.168.10.241:8080/http-proxy                     | stringType    |       0 |
+|        114 | NULL | mixedengine1 | any         |        0 | dvrEngine2VideoBaseURL          | http://192.168.10.241:8080/VxOASimulator/vxoa             | stringType    |       0 |
+|        115 | NULL | mixedengine1 | any         |        0 | dvrEngine1DynamicVideoBaseURL   | http://192.168.10.241:8080/http-proxy                     | stringType    |       0 |
+|        116 | NULL | mixedengine1 | any         |        0 | dvrEngine2DynamicVideoBaseURL   | http://192.168.10.241:8080/VxOASimulator/vxoa             | stringType    |       0 |
+|        117 | NULL | mixedengine1 | any         |        0 | dvrEngineMixedEngine1BaseURL    | http://192.168.10.241:8080/http-proxy                     | stringType    |       0 |
+|        121 | NULL | mixedengine1 | any         |        0 | dvrEngineMixedEngine2BaseURL    | http://192.168.10.241:8080/VxOASimulator/vxoa             | stringType    |       0 |
+|        126 | NULL | mixedengine1 | any         |        0 | vxoaDpUrlEnabled                | false                                                     | booleanType   |       0 |
++------------+------+--------------+-------------+----------+---------------------------------+-----------------------------------------------------------+---------------+---------+
